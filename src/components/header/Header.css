@@ -1,0 +1,27 @@
+.header {
+    background-color: #3c3c3c;
+    color: #F5F5F5;
+    padding: 0.5em;
+}
+h1{
+    padding: 5px;
+    font-weight: normal;
+}
+.content{
+    padding-left: 20vw;
+    padding-right: 20vw;
+    align-content: space-between;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.name-and-var{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+h5{
+    padding-top: 15px;
+    padding-left: 20px;
+}

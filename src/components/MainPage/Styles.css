@@ -1,0 +1,291 @@
+body {
+    font-size: 10px;
+    font-family: monospace, monospace;
+    background-color: black;
+}
+
+#main-grid {
+    width: 90%;
+    margin: auto;
+    border-spacing: 0.8em;
+}
+
+#header-plate {
+    padding: 1em 30px;
+    font-size: 25px;
+    color: #ffffff;
+    background-color: #3c3c3c;
+}
+
+.content-plate {
+    padding: 0 0 20px;
+    vertical-align: top;
+    background-color: #ffffff;
+}
+
+.plate-top {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 0;
+    text-align: center;
+    color: #ffffff;
+    background-color: #3c3c3c;
+}
+
+.plate-top-title {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.image-container {
+    text-align: center;
+}
+
+#input-grid {
+    width: 95%;
+    margin: auto;
+    text-align: center;
+}
+
+.input-grid-label {
+    width: 12%;
+    font-weight: bold;
+}
+.text-input {
+    width: 75%;
+    height: 25px;
+    margin: 2% 0;
+}
+.r-text-input {
+    width: 75%;
+    height: 25px;
+    margin: 2% 0;
+}
+.x-error-box {
+    margin: -1% auto auto auto;
+    width: 76%;
+    height: 20px;
+    font-size:16px;
+    padding:5px;
+}
+
+
+.r-error-box {
+    margin: -1% auto auto auto;
+    width: 76%;
+    height: 20px;
+    font-size:16px;
+    padding:5px;
+}
+
+
+.y-error-box {
+    margin: -1% auto auto auto;
+    width: 76%;
+    height: 20px;
+    font-size:16px;
+    padding:5px;
+}
+
+
+.buttons {
+    margin-top: 1%;
+}
+.buttons-result{
+    margin-top: 10px;
+    position: relative;
+    text-align: center;
+}
+
+/* Glow buttons */
+.glow-on-hover {
+    width: 200px;
+    height: 40px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: black;
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #3c3c3c;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+#table-plate {
+    position: relative;
+}
+
+#result-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+
+.table-row{
+    height: 0em;
+    background-color: #605f5f;
+    padding: 0 0;
+}
+.coords-col {
+    width: 12%;
+}
+
+.time-col {
+    width: 25%;
+}
+
+.left-aligned {
+    float: left;
+}
+
+.right-aligned {
+    float: right;
+}
+input[type=checkbox] {
+    display: block;
+    margin: 10% 1em;
+}
+label {
+    display: inline-block;
+}
+.false{
+    color: rgb(196, 20, 20);
+}
+.true{
+    color: rgb(11, 203, 15);
+}
+
+.centerTable { margin: 0 auto; }
+
+#table-plate {
+    width: 50%;
+    position: relative;
+    background-color: #605f5f;
+}
+
+.scroll-container {
+    position: absolute;
+    bottom: 0;
+    top: 54px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+#result-table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+#result-table tr {
+    height: 2em;
+}
+#shadowBox {
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/opacity/see-through */
+    border: 3px solid;
+}
+
+.rainbow {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 100px;
+    font-family: monospace;
+    letter-spacing: 5px;
+}
+.rainbow_text_animated {
+    background: linear-gradient(330deg, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: rainbow_animation 3s infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0%,100% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+}
+
+.transparent {
+    background-color: transparent;
+}
+.bn32 {
+    width: 30%;
+    border-radius: 0.5em;
+    border-color: #3c3c3c;
+    padding: 0.6em 2.3em;
+    cursor: pointer;
+    font-size: 1em;
+    color: black;
+    background-image: linear-gradient(45deg, transparent 50%, #605f5f 50%);
+    background-position: 25%;
+    background-size: 400%;
+    -webkit-transition: background 500ms ease-in-out, color 500ms ease-in-out;
+    transition: background 500ms ease-in-out, color 500ms ease-in-out;
+}
+
+.bn32:hover {
+    color: #ffffff;
+    background-position: 100%;
+}
+.center-aligned {
+    text-align: center;
+}
+.outer {
+    margin: 0 auto;
+}
