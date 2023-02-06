@@ -5,7 +5,8 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import {Route, Router, Routes} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./store/store";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
+import NotFoundPage from "./components/NotFoundPage";
 function App() {
 
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
             <Route path="/" element={<MainPage />}/>
             <Route path="/login" element={<LoginPage />}/>
+            <Route path="/*" element={<NotFoundPage/>} />
         </Routes>
       </Provider>
   );

@@ -15,5 +15,12 @@
 }
 
 .formCard:hover{
-    border:1px solid rgba(73, 80, 87, 0.58);
+    border:1px solid rgba(0, 0, 0, 0.58);
+}
+
+.errorBox{
+    position: fixed;
+    bottom: 0;
+    left: 5%;
+    transition-duration: 0.3s;
 }

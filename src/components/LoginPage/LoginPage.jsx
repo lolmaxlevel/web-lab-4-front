@@ -1,14 +1,17 @@
 import React from 'react';
 
-import { useMediaQuery } from 'react-responsive'
 import MainForm from "./MainForm";
-import {Nav} from "react-bootstrap";
+import {Alert, Nav} from "react-bootstrap";
 import "./Style.css"
 import {Navigate} from "react-router-dom";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {userSlice} from "../../store/reducers/userSlice";
 
-const LoginPage = ({loggedIn}) => {
-    const isDesktop = useMediaQuery({query: '(min-width: 1135px)'})
+const LoginPage = () => {
+    const {error,loggedIn} = useSelector(state => state.userReducer);
+    const dispatch = useDispatch();
+    const {setErrorMessage} = userSlice.actions;
+
     const [tab, setTab] = React.useState(true);
     function handleChange(){
         setTab(!tab)
@@ -29,14 +32,16 @@ const LoginPage = ({loggedIn}) => {
             </Nav>
             <MainForm mode={tab ? "login": "register"}/>
             </div>
+            <div className="errorBox">{error && <Alert variant="danger" onClose={() => dispatch(setErrorMessage(""))} dismissible>
+                <Alert.Heading>It seems like we got an error =(</Alert.Heading>
+                <p>
+                    {error}
+                </p>
+            </Alert>
+            }</div>
         </div>
+
     )
 };
-function mapStateToLoginPageProps(state) {
-    return {
-        errorMessage: state.loginFormErrorMessage,
-        loggedIn: state.loggedIn
-    }
-}
 
-export default connect(mapStateToLoginPageProps)(LoginPage)
+export default LoginPage

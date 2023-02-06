@@ -86,12 +86,15 @@ export const ApplicationService = {
     login: async function (username, password) {
         return JwtManager.login(username, password);
     },
+    logout: async function () {
+        return JwtManager.logout();
+    },
     register: async function (username, password) {
         return fetch(`${BASE_URL}/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                // Do not add Authorization header here
+                // Do not add Authorization Header here
             },
             body: JSON.stringify({ username: username, password: password }),
         }).then((response) => {

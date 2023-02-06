@@ -1,11 +1,9 @@
-import { BASE_URL } from "./ApplicationService.js";
-import store from "../store/store";
-import {setLogginedIn} from "../store/actions";
-
+const BASE_URL = "http://localhost:8080/api";
 /**
  * This object is responsible for managing JWT tokens and user authentication.
  */
 export const JwtManager = {
+
     /**
      * Used to get jwt tokens and save them to the local storage
      * @param username
@@ -22,6 +20,7 @@ export const JwtManager = {
             body: body,
         })
             .then((response) => {
+                console.log(response.status)
                 if (response.status === 200) {
                     return response.json();
                 } else if (response.status === 401) {
@@ -84,6 +83,6 @@ export const JwtManager = {
         localStorage.removeItem("access_token");
         localStorage.removeItem("refresh_token");
         localStorage.removeItem("username");
-        store.dispatch(setLogginedIn(false));
+        return true;
     },
 };
