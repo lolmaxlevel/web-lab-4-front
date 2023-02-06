@@ -2,8 +2,9 @@ import {JwtManager} from "../../service/JwtManager";
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState ={
+    attempts: [],
     loggedIn: JwtManager.userIsLoggedIn(),
-    username: localStorage.getItem("username"),
+    username: localStorage.getItem("username") ? localStorage.getItem("username") : '',
     password: '',
     isLoading: false,
     error:'',
@@ -57,6 +58,20 @@ export const userSlice = createSlice({
         fetchLogout: (state, action) => {
             state.loggedIn = false
         },
+        setAttempts: (state, action) => {
+            state.attempts = action.payload
+        },
+        fetchAddAttempt: (state, action) => {
+            state.isLoading = true
+        },
+        fetchAddAttemptSuccess: (state, action) => {
+            state.isLoading = false
+            state.error = ''
+        },
+        fetchAddAttemptFailure: (state, action) => {
+            state.isLoading = false
+            state.error = action.payload
+        }
     }
 })
 export default userSlice.reducer;

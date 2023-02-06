@@ -30,32 +30,8 @@ export const ApplicationService = {
             });
         });
     },
-    getAttemptsWithOffset: async function (offset, count, searchParams) {
-        // Add search params only if they are not undefined
+    getAttemptsWithOffset: async function (offset, count) {
         let url = `${BASE_URL}/get_with_offset?offset=${offset}&size=${count}`;
-        if (searchParams !== undefined) {
-            if (searchParams.searchId) {
-                url += `&id=${searchParams.searchId}`;
-            }
-            if (searchParams.searchX) {
-                url += `&x=${searchParams.searchX}`;
-            }
-            if (searchParams.searchY) {
-                url += `&y=${searchParams.searchY}`;
-            }
-            if (searchParams.searchR) {
-                url += `&r=${searchParams.searchR}`;
-            }
-            if (searchParams.searchResult) {
-                url += `&result=${searchParams.searchResult}`;
-            }
-            if (searchParams.searchTime) {
-                url += `&time=${searchParams.searchTime}`;
-            }
-            if (searchParams.searchProcessingTime) {
-                url += `&processingTime=${searchParams.searchProcessingTime}`;
-            }
-        }
         return fetch(url, {
             method: "GET",
             headers: {
@@ -65,8 +41,7 @@ export const ApplicationService = {
             return refreshHandler(response, () => {
                 return ApplicationService.getAttemptsWithOffset(
                     offset,
-                    count,
-                    searchParams
+                    count
                 );
             });
         });
