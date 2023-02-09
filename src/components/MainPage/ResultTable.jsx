@@ -1,18 +1,14 @@
 import React, {useEffect} from 'react';
 import "./Styles.css"
-import { useMediaQuery } from 'react-responsive'
 import {useDispatch, useSelector} from "react-redux";
 import {fetchAttempts} from "../../store/actions/ActionCreators";
 import {Table} from "react-bootstrap";
-import Paginator from "./Paginator";
 
 const ResultTable = () => {
-    const isDesktop = useMediaQuery({query: '(min-width: 1135px)'})
     const {attempts, needUpdate, activePage} = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("fetching attempts", activePage, needUpdate)
         dispatch(fetchAttempts((activePage - 1)*15,15))
     }, [needUpdate, activePage, dispatch])
 

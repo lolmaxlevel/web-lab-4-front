@@ -1,6 +1,5 @@
 .loginCard{
     margin: 15px;
-    width:100%;
     display: flex;
     justify-content: center;
 }
@@ -12,6 +11,7 @@
     border-radius: 0.375rem;
     padding: 10px;
     transition-duration: 0.3s;
+    background-color: #F5F5F5;
 }
 
 .formCard:hover{

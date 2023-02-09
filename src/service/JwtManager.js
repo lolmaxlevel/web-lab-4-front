@@ -20,7 +20,6 @@ export const JwtManager = {
             body: body,
         })
             .then((response) => {
-                console.log(response.status)
                 if (response.status === 200) {
                     return response.json();
                 } else if (response.status === 401) {
@@ -32,7 +31,6 @@ export const JwtManager = {
             .then((data) => {
                 localStorage.setItem("access_token", data.access_token);
                 localStorage.setItem("refresh_token", data.refresh_token);
-                console.log(localStorage.getItem("access_token"), "aboba", localStorage.getItem("refresh_token"))
                 localStorage.setItem("username", username);
                 return true;
             })

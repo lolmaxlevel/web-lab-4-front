@@ -82,10 +82,12 @@ export const ApplicationService = {
                 return false;
             }
         }).then((data) => {
-            localStorage.setItem("access_token", data.access_token);
-            localStorage.setItem("refresh_token", data.refresh_token);
-            localStorage.setItem("username", username);
-            return true;
+            if (data) {
+                localStorage.setItem("access_token", data.access_token);
+                localStorage.setItem("refresh_token", data.refresh_token);
+                localStorage.setItem("username", username);
+                return true;
+            }
         });
     },
 };
