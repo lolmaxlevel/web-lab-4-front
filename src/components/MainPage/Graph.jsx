@@ -1,32 +1,52 @@
 import React, {useEffect} from 'react';
 import "./Styles.css"
-import { useMediaQuery } from 'react-responsive'
+import {useDispatch, useSelector} from "react-redux";
+import {userSlice} from "../../store/reducers/userSlice";
+import {fetchAddAttempt} from "../../store/actions/ActionCreators";
 
 const Graph = () => {
-    const isDesktop = useMediaQuery({query: '(min-width: 1135px)'})
+    const dispatch = useDispatch();
+    const {attempts, rValue, needUpdate} = useSelector(state => state.userReducer);
+    const {setErrorMessage} = userSlice.actions;
+
     useEffect(() => {
         const canvas = document.getElementById("graph");
         const ctx = canvas.getContext('2d');
-        drawGraph(ctx, canvas);
-    });
+        drawGraph(ctx, canvas, attempts, rValue, setErrorMessage);
+    }, [attempts, rValue, needUpdate, setErrorMessage])
+
+
+    function sendAttempt(e){
+            if (rValue <= 0) {
+                setErrorMessage("Please, select a correct R");
+            } else {
+                e = e.nativeEvent
+                let graph_x = e.offsetX;
+                let graph_y = e.offsetY;
+                let normalized_x = (graph_x-(e.path[0].width/2)) / (e.path[0].height/2) * rValue;
+                let normalized_y = -(graph_y-(e.path[0].height/2)) / (e.path[0].width/2) * rValue;
+                dispatch(fetchAddAttempt({x: normalized_x, y: normalized_y, r: rValue}))
+            }
+    }
+
     return (
         <div>
             <div className="plate-top">
                 <h2 className="plate-top-title">Координатная плоскость на которую можно нажать</h2>
             </div>
             <div className="image-container">
-                <canvas height="300" width="300" id="graph"></canvas>
+                <canvas height="300" width="300" id="graph" onClick={(e) => sendAttempt(e)}></canvas>
             </div>
         </div>
     )
 };
-function drawGraph(ctx, canvas)
-{
+function drawGraph(ctx, canvas, attempts, rValue) {
     let x = canvas.width;
     let y = canvas.height;
     ctx.lineWidth = 1.5;
     ctx.strokeStyle = 'black';
     redrawGraph();
+
     function drawAxes() {
         ctx.save();
         drawLineFromTo(x / 2, 0, x / 2, y);
@@ -108,17 +128,17 @@ function drawGraph(ctx, canvas)
         drawCircle();
         drawRectangle();
         drawAxes();
-        drawText(1);
-        // drawDots();
+        drawText(rValue);
+        drawDots();
     }
 
-    // function drawDots() {
-    //     if (table.length !== 0) {
-    //         table.forEach((dot => {
-    //             drawDotOnGraph(dot.x / dot.r * (x / 2) + (x / 2), -dot.y / dot.r * (y / 2) + (y / 2), dot.hit)
-    //         }))
-    //     }
-    // }
+    function drawDots() {
+        if (attempts.length !== 0) {
+            attempts.forEach((dot => {
+                drawDotOnGraph(dot.x / dot.r * (x / 2) + (x / 2), -dot.y / dot.r * (y / 2) + (y / 2), dot.result)
+            }))
+        }
+    }
 
     function drawLineFromTo(x1, y1, x2, y2) {
         ctx.beginPath();
@@ -139,5 +159,4 @@ function drawGraph(ctx, canvas)
         ctx.lineWidth = 1.5;
     }
 }
-
 export default Graph;

@@ -55,3 +55,25 @@ export const fetchAddAttempt = (attempt) => async (dispatch) => {
             dispatch(userSlice.actions.fetchAddAttemptFailure(error.message));
         });
 }
+export const fetchDeleteAllAttempts = () => async (dispatch) => {
+    await ApplicationService.removeAllAttempts().then((result) => {
+        if (result) {
+            dispatch(userSlice.actions.setAttempts([]));
+            dispatch(userSlice.actions.setRowsCount(0));
+        } else {
+            console.log("Failed to delete all attempts");
+        }
+    })
+        .catch(error => {
+            console.log(error.message);
+        });
+}
+export const fetchTableSize = () => async (dispatch) => {
+    await ApplicationService.getRowsCount().then(response => response.json())
+        .then(data => {
+            dispatch(userSlice.actions.setRowsCount(data.count));
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+}

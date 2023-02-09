@@ -10,12 +10,16 @@ import GraphForm from "./GraphForm";
 
 const MainPage = () => {
     const {loggedIn} = useSelector(state => state.userReducer);
+
     const isDesktop = useMediaQuery({query: '(min-width: 1135px)'})
     if (!loggedIn) {
         return <Navigate to="/login"/>
     }
     return (
+        <div>
         <table id="main-grid">
+            <thead></thead>
+            <tbody>
             <tr>
                 <td className="content-plate" id="graph-plate">
                     <Graph/>
@@ -33,11 +37,10 @@ const MainPage = () => {
                     <GraphForm/>
                 </td>
             </tr>
+            </tbody>
         </table>
-
+        </div>
         )
-
-
 };
 
 export default MainPage;

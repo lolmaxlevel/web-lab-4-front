@@ -47,7 +47,7 @@ export const ApplicationService = {
         });
     },
     getRowsCount: async function () {
-        return fetch(`${BASE_URL}/get_count`, {
+        return fetch(`${BASE_URL}/get_count/`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${JwtManager.getCurrentAccessToken()}`,
@@ -74,13 +74,18 @@ export const ApplicationService = {
             body: JSON.stringify({ username: username, password: password }),
         }).then((response) => {
             if (response.status === 200) {
-                return true;
+                return response.json();
             } else if (response.status === 409 || response.status === 403 || response.status === 400) {
                 return false;
             } else {
                 console.log("Unexpected response status: " + response.status);
                 return false;
             }
+        }).then((data) => {
+            localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("refresh_token", data.refresh_token);
+            localStorage.setItem("username", username);
+            return true;
         });
     },
 };

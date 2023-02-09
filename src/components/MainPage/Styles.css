@@ -2,6 +2,7 @@ body {
     font-size: 10px;
     font-family: monospace, monospace;
     background-color: black;
+    background-image: url("https://i.pinimg.com/originals/9b/df/45/9bdf45b38e8584ae39b706bba7fc37d0.jpg");
 }
 
 #main-grid {
@@ -27,7 +28,7 @@ body {
     display: inline-block;
     width: 100%;
     margin-bottom: 20px;
-    padding: 0 0;
+    padding: 15px 0;
     text-align: center;
     color: #ffffff;
     background-color: #3c3c3c;
@@ -168,9 +169,8 @@ body {
     border-collapse: collapse;
 }
 
-
 .table-row{
-    height: 0em;
+    height: 0;
     background-color: #605f5f;
     padding: 0 0;
 }
@@ -213,8 +213,7 @@ label {
 
 .scroll-container {
     position: absolute;
-    bottom: 0;
-    top: 54px;
+    top: 60px;
     width: 100%;
     overflow-y: auto;
 }
@@ -291,4 +290,7 @@ label {
 }
 .color{
     color:black;
+}
+td{
+    padding: 100px;
 }

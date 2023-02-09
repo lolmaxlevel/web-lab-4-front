@@ -2,22 +2,22 @@ import React, {useEffect} from 'react';
 import "./Styles.css"
 import { useMediaQuery } from 'react-responsive'
 import {useDispatch, useSelector} from "react-redux";
-import {userSlice} from "../../store/reducers/userSlice";
-import {fetchAttempts, fetchLogin} from "../../store/actions/ActionCreators";
+import {fetchAttempts} from "../../store/actions/ActionCreators";
 import {Table} from "react-bootstrap";
+import Paginator from "./Paginator";
 
 const ResultTable = () => {
     const isDesktop = useMediaQuery({query: '(min-width: 1135px)'})
-    const {attempts} = useSelector(state => state.userReducer);
+    const {attempts, needUpdate, activePage} = useSelector(state => state.userReducer);
     const dispatch = useDispatch();
-    const {setAttempts} = userSlice.actions;
 
     useEffect(() => {
-        dispatch(fetchAttempts(0,10))
-    }, [])
+        console.log("fetching attempts", activePage, needUpdate)
+        dispatch(fetchAttempts((activePage - 1)*18,18))
+    }, [needUpdate, activePage, dispatch])
 
     return (
-        <div>
+        <div className="results">
             <div className="plate-top">
                 <h2 className="plate-top-title">Результат</h2>
             </div>
@@ -39,11 +39,13 @@ const ResultTable = () => {
                         return (
                             <tr key={index}>
                                 <td>{attempt.id}</td>
-                                <td>{attempt.x}</td>
-                                <td>{attempt.y}</td>
+                                <td>{attempt.x.toFixed(4)}</td>
+                                <td>{attempt.y.toFixed(4)}</td>
                                 <td>{attempt.r}</td>
-                                <td>{attempt.result ? "Hit" : "Miss"}</td>
-                                <td>{attempt.attemptTime}</td>
+                                <td style={{color:attempt.result ? "green" : "red"}}>
+                                    {attempt.result ? "Hit" : "Miss"}
+                                </td>
+                                <td>{(new Date(attempt.attemptTime).toLocaleTimeString())}</td>
                                 <td>{attempt.processingTimeNanos}</td>
                             </tr>
                         )
@@ -52,6 +54,7 @@ const ResultTable = () => {
                     </tbody>
                 </Table>
             </div>
+            <Paginator/>
         </div>
     )
 };

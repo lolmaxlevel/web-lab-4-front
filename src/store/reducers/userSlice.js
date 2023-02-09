@@ -8,6 +8,10 @@ const initialState ={
     password: '',
     isLoading: false,
     error:'',
+    needUpdate: false,
+    rValue: 1,
+    activePage: 1,
+    rowsCount:0
 }
 
 export const userSlice = createSlice({
@@ -29,10 +33,10 @@ export const userSlice = createSlice({
         setIsLoading: (state, action) => {
             state.isLoading = action.payload
         },
-        fetchLogin: (state, action) => {
+        fetchLogin: (state, ) => {
             state.isLoading = true
         },
-        fetchLoginSuccess: (state, action) => {
+        fetchLoginSuccess: (state, ) => {
             state.isLoading = false
             state.error = ''
             state.loggedIn = true
@@ -42,10 +46,10 @@ export const userSlice = createSlice({
             state.loggedIn = false
             state.error = action.payload
         },
-        fetchRegister: (state, action) => {
+        fetchRegister: (state, ) => {
             state.isLoading = true
         },
-        fetchRegisterSuccess: (state, action) => {
+        fetchRegisterSuccess: (state, ) => {
             state.isLoading = false
             state.error = ''
             state.loggedIn = true
@@ -55,22 +59,37 @@ export const userSlice = createSlice({
             state.loggedIn = false
             state.error = action.payload
         },
-        fetchLogout: (state, action) => {
+        fetchLogout: (state, ) => {
             state.loggedIn = false
         },
         setAttempts: (state, action) => {
             state.attempts = action.payload
         },
-        fetchAddAttempt: (state, action) => {
+        fetchAddAttempt: (state, ) => {
             state.isLoading = true
+            state.needUpdate = true
         },
-        fetchAddAttemptSuccess: (state, action) => {
+        fetchAddAttemptSuccess: (state, ) => {
             state.isLoading = false
             state.error = ''
+            state.needUpdate = false
         },
         fetchAddAttemptFailure: (state, action) => {
             state.isLoading = false
             state.error = action.payload
+            state.needUpdate = false
+        },
+        setNeedUpdate: (state, action) => {
+            state.needUpdate = action.payload
+        },
+        setRValue: (state, action) => {
+            state.rValue = action.payload
+        },
+        setRowsCount: (state, action) => {
+            state.rowsCount = action.payload
+        },
+        setActivePage: (state, action) => {
+            state.activePage = action.payload
         }
     }
 })
