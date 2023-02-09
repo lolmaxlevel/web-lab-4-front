@@ -20,7 +20,7 @@ const Paginator = () =>
         dispatch(setActivePage(Number(eventKey.target.id)))
     }
     let items = [];
-    for (let number = 1; number <= 1 + rowsCount/18; number++) {
+    for (let number = 1; number <= 1 + rowsCount/15; number++) {
         items.push(
             <Pagination.Item id={number} key={number} active={number === activePage} onClick={handleSelect}>
                 {number}

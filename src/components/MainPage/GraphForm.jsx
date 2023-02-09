@@ -34,6 +34,7 @@ function GraphForm() {
         if (Math.abs(Number(y)) >= Number(event.target.value)) setY(event.target.value * Math.sign(Number(y)));
     }
     return (
+        <div className="graph-form">
         <Form onSubmit={handleSubmit} onReset={handleReset}>
             <Row className="mb-3">
                 <Form.Group >
@@ -61,6 +62,7 @@ function GraphForm() {
             <Button type="reset" disabled={isLoading} variant="dark">Delete all attempts</Button>
             </Row>
         </Form>
+        </div>
     );
 }
 

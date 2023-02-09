@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import Graph from "./Graph";
 import ResultTable from "./ResultTable";
 import GraphForm from "./GraphForm";
+import Paginator from "./Paginator";
 
 
 const MainPage = () => {
@@ -16,29 +17,19 @@ const MainPage = () => {
         return <Navigate to="/login"/>
     }
     return (
-        <div>
-        <table id="main-grid">
-            <thead></thead>
-            <tbody>
-            <tr>
-                <td className="content-plate" id="graph-plate">
-                    <Graph/>
-                </td>
-                <td className="content-plate" id="table-plate" rowSpan="2">
-                    <ResultTable/>
-                </td>
-            </tr>
-
-            <tr>
-                <td className="content-plate" id="values-plate">
-                    <div className="plate-top">
-                        <h2 className="plate-top-title">Значения</h2>
-                    </div>
-                    <GraphForm/>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div className="wrapper">
+            <div className="box-1">
+                 <Graph/>
+            </div>
+            <div className="box-2">
+                <GraphForm/>
+            </div>
+            <div className="box-3">
+                <ResultTable/>
+            </div>
+            <div className="box-4">
+                <Paginator/>
+            </div>
         </div>
         )
 };

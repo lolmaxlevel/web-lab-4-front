@@ -13,15 +13,15 @@ const ResultTable = () => {
 
     useEffect(() => {
         console.log("fetching attempts", activePage, needUpdate)
-        dispatch(fetchAttempts((activePage - 1)*18,18))
+        dispatch(fetchAttempts((activePage - 1)*15,15))
     }, [needUpdate, activePage, dispatch])
 
     return (
-        <div className="results">
+        <div>
             <div className="plate-top">
                 <h2 className="plate-top-title">Результат</h2>
             </div>
-            <div className="scroll-container">
+            <div>
                 <Table striped bordered hover variant="dark">
                     <thead>
                     <tr>
@@ -54,7 +54,6 @@ const ResultTable = () => {
                     </tbody>
                 </Table>
             </div>
-            <Paginator/>
         </div>
     )
 };
