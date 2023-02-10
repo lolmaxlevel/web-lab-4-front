@@ -11,7 +11,6 @@ const Paginator = () =>
     const {activePage, rowsCount, needUpdate} = useSelector(state => state.userReducer);
     const {setActivePage} = userSlice.actions;
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(fetchTableSize())
     }, [dispatch, needUpdate])

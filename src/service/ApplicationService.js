@@ -1,6 +1,6 @@
 import { JwtManager } from "./JwtManager.js";
 
-export const BASE_URL = "http://localhost:8080/api";
+export const BASE_URL = "http://localhost:42880/api";
 
 export const ApplicationService = {
     addAttempt: async function (attempt) {
